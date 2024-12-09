@@ -8,6 +8,34 @@
 //    (Ex: make parrot bigger, smaller, change the text/emoji,
 //    etc.)
 
+const state = {
+    clickCounter: 0,
+    clickStatus: false,
+}
+
+
+const handleParrotClick = () => {
+    // loadControls();
+    const clickCounter = document.getElementById('counter');
+    const parrotClick = document.getElementById('parrot-click');
+
+    state.clickStatus = true;
+    
+    state.clickCounter += 1;
+    clickCounter.textContent = state.clickCounter;
+
+    if (state.clickStatus && state.clickCounter === 20)  {
+        parrotClick.color = 'red';
+    }
+    
+};
+
+const registerEventHandlers = () => {
+    
+    const parrotClick = document.getElementById('parrot-click');
+    parrotClick.addEventListener('click', handleParrotClick);
+};
+
 // Extra:
 // // Box 1: When the mouse hovers over Box 1, switch the background to pink
 // Box 2: When the spacebar is pressed down, make the text in Box 2 turn into a flan emoji
