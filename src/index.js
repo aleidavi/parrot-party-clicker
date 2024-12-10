@@ -17,24 +17,41 @@ const state = {
 const handleParrotClick = () => {
     // loadControls();
     const clickCounter = document.getElementById('counter');
-    const parrotClick = document.getElementById('parrot-click');
 
     state.clickStatus = true;
     
     state.clickCounter += 1;
     clickCounter.textContent = state.clickCounter;
 
-    if (state.clickStatus && state.clickCounter === 20)  {
-        parrotClick.color = 'red';
+    const parrotEffect = document.querySelector('#parrot-click')
+    if (state.clickStatus && state.clickCounter >= 20)  {
+        parrotEffect.classList.add('image-fade');
     }
     
 };
 
-const registerEventHandlers = () => {
+const resetButtonHandle = () => {
+    const clickCounter = document.getElementById('counter');
+
+    state.clickCounter = 0;
+    clickCounter.textContent = state.clickCounter;
+
+
+    const removeParrotEffect = document.querySelector('#parrot-click')
+    removeParrotEffect.classList.remove('image-fade');
     
+
+}
+
+const registerEventHandlers = () => {
     const parrotClick = document.getElementById('parrot-click');
     parrotClick.addEventListener('click', handleParrotClick);
+
+    const resetBtnClick = document.getElementById('reset');
+    resetBtnClick.addEventListener('click', resetButtonHandle);
 };
+
+document.addEventListener('DOMContentLoaded', registerEventHandlers);
 
 // Extra:
 // // Box 1: When the mouse hovers over Box 1, switch the background to pink
